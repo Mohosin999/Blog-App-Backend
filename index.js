@@ -7,3 +7,13 @@ const swaggerDoc = YAML.load("./swagger.yaml");
 const app = express();
 app.use(express.json());
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    health: "OK",
+  });
+});
+
+app.listen(4000, () => {
+  console.log("Server is listening on port 4000");
+});
