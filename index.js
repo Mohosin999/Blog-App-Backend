@@ -6,9 +6,9 @@ const swaggerDoc = YAML.load("./swagger.yaml");
 // express app
 const app = express();
 app.use(express.json());
-app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-app.get("/health", (_req, res) => {
+app.get("/api/v1/health", (_req, res) => {
   res.status(200).json({
     health: "OK",
   });
