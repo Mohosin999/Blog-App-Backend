@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
@@ -16,13 +17,14 @@ app.get("/api/v1/health", (_req, res) => {
 
 app.get("/api/v1/articles", (req, res) => {
   // 1. extract query params
-  const page = +req.query.page ?? 1; // + sing to make it integer (or ParseInt())
-  const limit = +req.query.limit ?? 10;
-  const sortType = req.query.sort_type ?? "asc";
-  const sortBy = req.query.sort_by ?? "updatedAt";
-  const searchTerm = req.query.search ?? "";
+  const page = +req.query.page || 1; // + sing to make it integer (or ParseInt())
+  const limit = +req.query.limit || 10;
+  const sortType = req.query.sort_type || "asc";
+  const sortBy = req.query.sort_by || "updatedAt";
+  const searchTerm = req.query.search || "";
 
   // 2. call article service to fatch all articles
+
   // 3. generate necessary responses
   res.status(200).json({ path: "/articles", method: "get" });
 });
