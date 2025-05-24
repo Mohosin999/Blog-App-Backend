@@ -4,14 +4,15 @@ const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerDoc = YAML.load("./swagger.yaml");
 
-require("./db");
+// require("./db");
 
 // express app
 const app = express();
 app.use(express.json());
-app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
-app.get("/api/v1/health", (_req, res) => {
+// Health route
+app.get("/health", (_req, res) => {
   res.status(200).json({
     health: "OK",
   });
