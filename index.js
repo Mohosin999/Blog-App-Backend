@@ -4,7 +4,7 @@ const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerDoc = YAML.load("./swagger.yaml");
 
-// require("./db");
+require("./db");
 
 // express app
 const app = express();
@@ -20,7 +20,7 @@ app.get("/health", (_req, res) => {
 
 app.get("/api/v1/articles", (req, res) => {
   // 1. extract query params
-  const page = +req.query.page || 1; // + sing to make it integer (or ParseInt())
+  const page = +req.query.page || 1; // + sign to make it integer (or ParseInt())
   const limit = +req.query.limit || 10;
   const sortType = req.query.sort_type || "asc";
   const sortBy = req.query.sort_by || "updatedAt";
